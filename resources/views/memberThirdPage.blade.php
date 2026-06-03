@@ -1,20 +1,20 @@
 <p class="accreditation22">
     {{-- First 4 digits --}}
-    @foreach(str_split('1501') as $digit)
+    @foreach(str_split('2000') as $digit)
         <span>{{ $digit }}</span>
     @endforeach
 
     <span class="group-gap"></span>
 
     {{-- Middle 7 digits --}}
-    @foreach(str_split('1638387') as $digit)
+    @foreach(str_split('16366822') as $digit)
         <span>{{ $digit }}</span>
     @endforeach
 
     <span class="group-gap"></span>
 
     {{-- Last digit --}}
-    @foreach(str_split('1') as $digit)
+    @foreach(str_split('2') as $digit)
         <span>{{ $digit }}</span>
     @endforeach
 </p>

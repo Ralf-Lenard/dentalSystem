@@ -21,14 +21,9 @@ class CSFPrintController extends Controller
      
          // Check if date_admitted exists
          if (!$csf->date_admitted) {
-             // Option 1: Return an error response
-             return redirect()->back()->withErrors([
-                'date_admitted' => 'Date admitted is missing for this member.'
-            ]);
             
-     
-             // Option 2: Or throw an exception instead
-             // throw new \Exception('Date admitted is missing for this member.');
+            return redirect()->back()->with('error', 'Date admitted is missing for this member.');
+            
          }
      
          // Get today's date as Carbon object

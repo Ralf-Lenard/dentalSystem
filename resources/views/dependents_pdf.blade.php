@@ -473,9 +473,11 @@
         }
 
 
-        @include('dependentsSecondStyle')
-        @include('dependentsThirdStyle')
+       
+        
     </style>
+     @include('/Dependent/dependentSecondStyle')
+     @include('/Dependent/dependentThirdStyle')
 </head>
 
 <body>
@@ -823,7 +825,7 @@
             $isOther = !in_array($rel, $standardTypes) && $rel !== '';
         @endphp
 
-        <p class="rep_spouse1">@if($rel === 'spouse') ✔ @endif</p>
+        <p class="rep_spouse2">@if($rel === 'spouse') ✔ @endif</p>
         <p class="rep_sibling2">@if($rel === 'sibling') ✔ @endif</p>
         <p class="rep_child2">@if($rel === 'child') ✔ @endif</p>
         <p class="rep_parent2">@if($rel === 'parent') ✔ @endif</p>
@@ -938,7 +940,8 @@
 
     <div class="page-break"></div>
 
-        @include('dependentsSecond')
+        @include('/Dependent/dependentSecond')
+        @include('/Dependent/dependentThird')
 </body>
 
 </html>

@@ -7,7 +7,7 @@ const props = defineProps<{
     show: boolean;
     editingDependent: any | null;
     selectedCsfId: number | null;
-   
+    oralChoices: string[];
 }>();
 
 const emit = defineEmits(['close']);
@@ -23,7 +23,7 @@ const form = useForm({
     relationship: '',
     date_admitted: '',
     date_discharged: '',
-   
+    oral_examination: [] as string[],
     institution_fees: 0,
     mandatory_discount: 0,
     philhealth_benefit: 0,
@@ -140,7 +140,7 @@ watch(() => props.editingDependent, (dep) => {
     form.institution_fees = dep.institution_fees || 0;
     form.mandatory_discount = dep.mandatory_discount || 0;
     form.philhealth_benefit = dep.philhealth_benefit || 0;
-   
+    form.oral_examination = Array.isArray(dep.oral_examination) ? [...dep.oral_examination] : [];
     form.diagnosis = dep.diagnosis || '';
     form.final_diagnosis = dep.final_diagnosis || '';
     form.procedure = dep.procedure || '';
@@ -162,11 +162,6 @@ watch(() => props.editingDependent, (dep) => {
     form.second_tooth = dep.second_tooth;
     form.third_tooth = dep.third_tooth;
     form.fourth_tooth = dep.fourth_tooth;
-
-    form.first_tooth_service = dep.first_tooth_service;
-    form.second_tooth_service = dep.second_tooth_service;
-    form.third_tooth_service = dep.third_tooth_service;
-    form.fourth_tooth_service = dep.fourth_tooth_service;
 
 }, { immediate: true });
 
@@ -364,37 +359,7 @@ if (props.editingDependent) {
                     </div>
                     <div class="space-y-2">
                         <label class="text-sm font-semibold text-slate-600">Procedure</label>
-
-                        <select
-                            v-model="form.procedure"
-                            class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:ring-2 focus:ring-emerald-500"
-                        >
-                            <option value="" disabled>Select procedure</option>
-
-                            <option value="1st visit mandatory services only">
-                                1st visit mandatory services only
-                            </option>
-
-                            <option value="1st visit with mandatory services">
-                                1st visit with mandatory services
-                            </option>
-
-                            <option value="1st visit with mandatory services.">
-                                1st visit with mandatory services.
-                            </option>
-
-                            <option value="2nd visit with mandatory services">
-                                2nd visit with mandatory services
-                            </option>
-
-                            <option value="2nd visit mandatory services only">
-                                2nd visit mandatory services only
-                            </option>
-
-                            <option value="2nd visit with mandatory services.">
-                                2nd visit with mandatory services.
-                            </option>
-                        </select>
+                        <textarea v-model="form.procedure" rows="2" class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:ring-2 focus:ring-emerald-500 resize-none"></textarea>
                     </div>
                 </div>
 
@@ -469,7 +434,7 @@ if (props.editingDependent) {
                     </div>
                 </div>
 
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
                     <div class="space-y-2">
                         <label class="text-sm font-semibold text-slate-600">Total Charges</label>
                         <input v-model.number="form.institution_fees" type="number" step="0.01" class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:ring-2 focus:ring-emerald-500" required>
@@ -482,7 +447,15 @@ if (props.editingDependent) {
                         <label class="text-sm font-semibold text-slate-600">PhilHealth Benefit</label>
                         <input v-model.number="form.philhealth_benefit" type="number" step="0.01" class="w-full px-4 py-3 rounded-xl border border-slate-200 focus:ring-2 focus:ring-emerald-500" required>
                     </div>
-                    
+                    <div class="space-y-2">
+                        <label class="text-sm font-semibold text-slate-600">Oral Examination</label>
+                        <div class="p-4 border border-slate-200 rounded-xl bg-white max-h-40 overflow-y-auto space-y-2">
+                            <div v-for="choice in oralChoices" :key="choice" class="flex items-center gap-3">
+                                <input type="checkbox" :value="choice" v-model="form.oral_examination" class="w-5 h-5 accent-emerald-600">
+                                <span class="text-sm text-slate-700">{{ choice }}</span>
+                            </div>
+                        </div>
+                    </div>
                 </div>
 
                 <div class="bg-blue-50 border border-blue-100 rounded-2xl p-6 space-y-6">

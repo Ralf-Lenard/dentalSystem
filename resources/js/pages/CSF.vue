@@ -31,18 +31,44 @@ interface Dependent {
 interface Member {
     id: number;
     philhealth_number: string;
+
     last_name: string;
     first_name: string;
     middle_name?: string;
     name_extension?: string;
+
     birthdate: string;
-    date_admitted: string;
-    date_discharged: string;
+    date_admitted?: string | null;
+    date_discharged?: string | null;
+
+    oral_examination?: string[];
     institution_fees: number;
-    oral_examination: string[];
-    diagnosis: string;
+    diagnosis?: string;
+
+    // ✅ Added missing fields from migration
+    sex: 'Male' | 'Female';
+
+    unit_no?: string;
+    building_name?: string;
+    house_no?: string;
+    street?: string;
+    village?: string;
+    brgy?: string;
+    municipality?: string;
+    province?: string;
+    country?: string;
+    zip_code?: string;
+
+    landline_no?: string;
+    mobile_no?: string;
+    email_address?: string;
+
     dependents?: Dependent[];
+
+    created_at?: string;
+    updated_at?: string;
 }
+
 
 interface PaginationLink {
     url: string | null;

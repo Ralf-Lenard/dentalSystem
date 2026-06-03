@@ -18,8 +18,6 @@ Route::get('dashboard', function () {
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 
-
-
 Route::get('/csf', [CSFController::class, 'index'])->name('csf');
 Route::post('/csf', [CSFController::class, 'store'])->name('csf.store');
 Route::put('/csf/{id}', [CSFController::class, 'update'])->name('csf.update');

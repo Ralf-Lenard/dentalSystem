@@ -356,9 +356,11 @@
         }
 
 
-        @include('memberSecondPageStyle')
-        @include('memberThirdPageStyle')
+       
     </style>
+
+@include('/Member/memberSecondStyle')
+@include('/Member/memberThirdStyle')
 </head>
 
 <body>
@@ -536,17 +538,17 @@
         @endforeach
     </p>
 
-    <p class="full_name">
+    <!-- <p class="full_name">
         {{ $csf->first_name }}
         {{ $csf->middle_name ? substr($csf->middle_name, 0, 1) . '.' : '' }}
         {{ $csf->last_name }}
         {{ $csf->name_extension }}
-    </p>
+    </p> -->
 
     <p class="date_today2">
-        @php
-            $month = $today->format('m'); // e.g., "02"
-            $year = $today->format('Y'); // e.g., "2026"
+    @php
+            $month = $csf->date_discharged->format('m');
+            $year = $csf->date_discharged->format('Y');
         @endphp
 
         {{-- Month --}}
@@ -568,19 +570,19 @@
 
     <p class="check">✔</p>
 
-    <p class="full_name2">
+    <!-- <p class="full_name2">
         {{ $csf->first_name }}
         {{ $csf->middle_name ? substr($csf->middle_name, 0, 1) . '.' : '' }}
         {{ $csf->last_name }}
         {{ $csf->name_extension }}
-    </p>
+    </p> -->
 
     <p class="check2">✔</p>
 
     <p class="date_today3">
         @php
-            $month = $today->format('m'); // e.g., "02"
-            $year = $today->format('Y'); // e.g., "2026"
+            $month = $csf->date_discharged->format('m');
+            $year = $csf->date_discharged->format('Y');
         @endphp
 
         {{-- Month --}}
@@ -603,14 +605,14 @@
 
     <p class="accreditation">
         {{-- First 4 digits --}}
-        @foreach(str_split('1501') as $digit)
+        @foreach(str_split('2000') as $digit)
             <span>{{ $digit }}</span>
         @endforeach
 
         <span class="group-gap"></span>
 
         {{-- Middle 7 digits --}}
-        @foreach(str_split('1638387') as $digit)
+        @foreach(str_split('1636682') as $digit)
             <span>{{ $digit }}</span>
         @endforeach
 
@@ -618,7 +620,7 @@
         <!-- <span class="group-gap"></span> -->
 
         {{-- Last digit --}}
-        @foreach(str_split('1') as $digit)
+        @foreach(str_split('2') as $digit)
             <span>{{ $digit }}</span>
         @endforeach
     </p>
@@ -629,9 +631,9 @@
     </p>
 
     <p class="date_today4">
-        @php
-            $month = $today->format('m'); // e.g., "02"
-            $year = $today->format('Y'); // e.g., "2026"
+    @php
+            $month = $csf->date_discharged->format('m');
+            $year = $csf->date_discharged->format('Y');
         @endphp
 
         {{-- Month --}}
@@ -651,14 +653,14 @@
         @endforeach
     </p>
 
-    <p class="fcr">90375</p>
-    <p class="nurse">MAR A. PANLILIO</p>
-    <p class="designation">ABTC NURSE</p>
+    <p class="fcr">OPH01a</p>
+    <p class="nurse">ROXAN B. VILLANUEVA</p>
+    <p class="designation">ADMINISTRATIVE AIDE I</p>
 
     <p class="date_today5">
-        @php
-            $month = $today->format('m'); // e.g., "02"
-            $year = $today->format('Y'); // e.g., "2026"
+    @php
+            $month = $csf->date_discharged->format('m');
+            $year = $csf->date_discharged->format('Y');
         @endphp
 
         {{-- Month --}}
@@ -680,7 +682,7 @@
 
     <div class="page-break"></div>
 
-        @include('memberSecondPage')
+        @include('/Member/memberSecond')
 </body>
 
 </html>
